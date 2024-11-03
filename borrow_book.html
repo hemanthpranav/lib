@@ -1,0 +1,10 @@
+<!-- templates/borrow_book.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>Borrow Book</h2>
+<p>Are you sure you want to borrow "<strong>{{ book.title }}</strong>" by {{ book.author }}?</p>
+<form method="POST">
+    <button type="submit" class="btn btn-success">Confirm Borrow</button>
+    <a href="{{ url_for('browse_books') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,30 @@
+<!-- templates/user_dashboard.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>User Dashboard</h2>
+<h3>Your Borrowed Books</h3>
+{% if borrows %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Book Title</th>
+                <th>Borrow Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for borrow in borrows %}
+            <tr>
+                <td>{{ borrow.book.title }}</td>
+                <td>{{ borrow.borrow_date.strftime('%Y-%m-%d') }}</td>
+                <td>
+                    <a href="{{ url_for('return_book', borrow_id=borrow.id) }}" class="btn btn-warning">Return</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>You have not borrowed any books.</p>
+{% endif %}
+{% endblock %}

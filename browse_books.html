@@ -1,0 +1,33 @@
+<!-- templates/browse_books.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>Browse Books</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Available</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ 'Yes' if book.available else 'No' }}</td>
+            <td>
+                {% if book.available %}
+                    <a href="{{ url_for('borrow_book', book_id=book.id) }}" class="btn btn-primary">Borrow</a>
+                {% else %}
+                    <span class="text-muted">Not Available</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

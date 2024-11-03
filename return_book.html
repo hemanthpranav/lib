@@ -1,0 +1,10 @@
+<!-- templates/return_book.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>Return Book</h2>
+<p>Are you sure you want to return "<strong>{{ borrow.book.title }}</strong>" borrowed on {{ borrow.borrow_date.strftime('%Y-%m-%d') }}?</p>
+<form method="POST">
+    <button type="submit" class="btn btn-success">Confirm Return</button>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
